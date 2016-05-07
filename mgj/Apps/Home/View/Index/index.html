@@ -1,0 +1,277 @@
+<extend name="./Public/public" />
+<block name="center">
+	<div class="c"></div>
+	<div class="center">
+		<div class="c1">
+		<!-- 商品分类 -->
+		<div class="c1_fl">
+	<?php
+		$sql=" SELECT * FROM category ";
+			$result = mysql_query($sql);
+			if($result && mysql_num_rows($result)>0){
+				$arr=array();
+				$pid = array();
+				while($row = mysql_fetch_assoc($result)){
+					$arr[]=$row;
+					$pid[]=$row;
+				}
+			}
+			//遍历导航条
+			foreach($arr as $v){
+				//获取顶级分类
+				if($v['pid'] == 0){
+					//顶级分类
+					echo '<dl><dd><h2><a href="?id='.$v['id'].'">'.$v['catename'].'</a></h2>';
+						//进行二次判断，判断当前父类下是否有子类
+						for($i=0;$i<count($pid);$i++){
+							//拿当前分类的ID，在所有的PID字段里面去匹配，如果当前ID能匹配到PID 那么证明当前分类下有子类
+							if($v['id'] == $pid[$i]['pid']){
+				//输出子类
+				echo '<dd><li><h3><a href="?id='.$pid[$i]['id'].'" style="color:red;">'.$pid[$i]['catename'].'</a><h3></li></dd>';
+							}
+						}
+					echo '</dd></dl>';
+				}
+			}
+?>
+		</div>
+			<!-- 轮播图 -->
+			<div class="c1_lb">
+				<a href=""><img src="__PUBLIC__/Home/images/c1_lb.jpg" alt=""></a>
+			</div>
+			<!-- 右侧图片 -->
+			<div class="c1_img">
+				<div class="c1_img1">
+					<a href=""><img src="__PUBLIC__/Home/images/c1_img1.jpg" alt=""></a>
+				</div>
+				<a href=""><img src="__PUBLIC__/Home/images/c1_img2.jpg" alt=""></a>
+			</div>
+		</div>
+		<!-- 精品 -->
+		<div class="c2">
+			<div class="c2_head">
+				<div class="c2_head_left">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+				<div class="c2_head_center">
+					精品馆
+				</div>
+				<div class="c2_head_right">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+			</div>
+			<div class="c2_goods">
+				<div class="c2_goods_left">
+					<div class="c2_goods_lt">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_lt.jpg" alt=""></a>
+					</div>
+					<div class="c2_goods_lb">
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb1.png" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb2.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb3.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb4.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb5.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb6.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb7.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb8.jpg" alt=""></a>
+						</div>
+					</div>
+				</div>
+				<div class="c2_bimg">
+					<img src="__PUBLIC__/Home/images/c2_bimg.jpg" alt="">
+				</div>
+				<div class="c2_goods_r">
+				<foreach name="goods1" item="vo" >
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/{$vo.pic}" alt="">
+						<p>{$vo.name}</p>
+						</a>
+					</div>
+				</foreach>
+				</div>
+			</div>
+		</div>
+		<!-- 新品 -->
+		<div class="c2">
+			<div class="c2_head">
+				<div class="c2_head_left">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+				<div class="c2_head_center">
+					新品馆
+				</div>
+				<div class="c2_head_right">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+			</div>
+			<div class="c2_goods">
+				<div class="c2_goods_left">
+					<div class="c2_goods_lt">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_lt.jpg" alt=""></a>
+					</div>
+					<div class="c2_goods_lb">
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb1.png" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb2.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb3.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb4.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb5.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb6.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb7.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb8.jpg" alt=""></a>
+						</div>
+					</div>
+				</div>
+				<div class="c2_bimg">
+					<img src="__PUBLIC__/Home/images/c2_bimg.jpg" alt="">
+				</div>
+				<div class="c2_goods_r">
+				<foreach name="goods2" item="vo" >
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/{$vo.pic}" alt="">
+						<p>{$vo.name}</p>
+						</a>
+					</div>
+				</foreach>
+				</div>
+			</div>
+		</div>
+		<!-- 热销 -->
+		<div class="c2">
+			<div class="c2_head">
+				<div class="c2_head_left">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+				<div class="c2_head_center">
+					热销馆
+				</div>
+				<div class="c2_head_right">
+					<img src="__PUBLIC__/Home/images/c2_head.png" alt="">
+				</div>
+			</div>
+			<div class="c2_goods">
+				<div class="c2_goods_left">
+					<div class="c2_goods_lt">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_lt.jpg" alt=""></a>
+					</div>
+					<div class="c2_goods_lb">
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb1.png" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb2.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb3.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb4.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb5.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb6.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img1">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb7.jpg" alt=""></a>
+						</div>
+						<div class="c2_goods_img2">
+							<a href=""><img src="__PUBLIC__/Home/images/c2_lb8.jpg" alt=""></a>
+						</div>
+					</div>
+				</div>
+				<div class="c2_bimg">
+					<img src="__PUBLIC__/Home/images/c2_bimg.jpg" alt="">
+				</div>
+				<div class="c2_goods_r">
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+					<div class="c2_goods_r1">
+						<a href=""><img src="__PUBLIC__/Home/images/c2_r1.jpg" alt="">
+						<p>韩版T恤</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 友情链接 -->
+		<div class="c"></div>
+		
+		<div class="friendlink">
+			<h3>友情链接:<h3>
+		<foreach name="links" item="vo" >   
+            <tr class="gradeA odd" role="row">
+                <td class="sorting_1"><a href="http://{$vo.address}"><img src="__PUBLIC__/{$vo.logo}" width="50px" style="padding-top:-10px;padding-left:60px;"></a></td>  
+            </tr>
+        </foreach>
+		</div>
+		
+		<!-- 搜索 -->
+		<div class="ss">
+			<div class="ss_logo">
+				<img src="__PUBLIC__/Home/images/ss_logo.png" alt="">
+			</div>
+			<div class="ss_left">
+                <span class="selected">搜商品</span>
+            </div>
+            <form action="">
+            	<input type="search" class="search">
+            	<button><img src="__PUBLIC__/Home/images/ss.png" alt=""></button>
+            </form>
+		</div>
+		<script type="text/javascript"src="__PUBLIC__/Home/js/ss.js"></script>
+	</div>
+</block>
